@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Run Script Example</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Run Python Script</h1>
+
+  <form method="post" action="{% url 'run_script' %}">
+    {% csrf_token %}
+    <button type="submit">Execute Script</button><hr>
+
+    {% if data %}
+      <p>Additional data: {{ data }}</p>
+    {% endif %}
+  </form>
+  <form method="post" action="{% url 'dbinsert' %}">
+    {% csrf_token %}
+    <button type="submit">Insert to SQL Server</button>
+  </form>
+
+  <h2>Script Result</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>DN</th>
+        <th>Start_Time</th>
+        <th>DTMF_REP</th>
+        <th>state</th>
+        <th>AC_ID</th>
+        <th>AC_NO</th>
+        <th>PC_ID</th>
+        <th>PC_NO</th>
+        <th>PART_NO</th>
+        <th>GENDER</th>
+        <th>AGE</th>
+        <th>N_PARTY</th>
+        <th>RES1</th>
+        <th>RES2</th>
+        <th>CASTE</th>
+        <th>REGION</th>
+        <th>RES_ACWISE</th>
+        <th>RES_PCWISE</th>
+        <th>RES_SEQWISE_AC</th>
+        <th>RES_SEQWISE_PC</th>
+        <th>RES_DATEWISE</th>
+        <th>RES_REGIONWISE_AC</th>
+        <th>RES_ACWISE_TOTAL</th>
+        <th>AC_WISE_PERCENTAGE</th>
+        <th>WINNER_ACWISE</th>
+        <th>MAX_PER_ACWISE</th>
+        <th>RANK_PER_ACWISE</th>
+        <th>2ND_PER_ACWISE</th>
+        <th>RUNNER_UP_ACWISE</th>
+        <th>MARGIN_ACWISE</th>
+        <th>MARGIN_GROUP_ACWISE</th>
+        <th>SUMMERY_ACWISE</th>
+        <th>RES_PCWISE_TOTAL</th>
+        <th>PC_WISE_PERCENTAGE</th>
+        <th>WINNER_PCWISE</th>
+        <th>MAX_PER_PCWISE</th>
+        <th>RANK_PER_PCWISE</th>
+        <th>2ND_PER_PCWISE</th>
+        <th>RUNNER_UP_PCWISE</th>
+        <th>MARGIN_PCWISE</th>
+        <th>MARGIN_GROUP_PCWISE</th>
+        <th>SUMMERY_PCWISE</th>
+        <th>RES_SEQWISE_TOTAL</th>
+        <th>SEQ_WISE_PERCENTAGE_AC</th>
+        <th>WINNER_SEQWISE_AC</th>
+        <th>MAX_PER_SEQWISE_AC</th>
+        <th>RANK_PER_SEQ_WISE_AC</th>
+        <th>2ND_PER_SEQWISE_AC</th>
+        <th>RUNNER_UP_SEQWISE_AC</th>
+        <th>MARGIN_SEQWISE_AC</th>
+        <th>MARGIN_GROUP_SEQWISE_AC</th>
+        <th>SUMMERY_SEQWISE_AC</th>
+        <th>RES_SEQWISE_TOTAL_PC</th>
+        <th>SEQ_WISE_PERCENTAGE_PC</th>
+        <th>WINNER_SEQWISE_PC</th>
+        <th>MAX_PER_SEQWISE_PC</th>
+        <th>RANK_PER_SEQ_WISE_PC</th>
+        <th>2ND_PER_SEQWISE_PC</th>
+        <th>RUNNER_UP_SEQWISE_PC</th>
+        <th>MARGIN_SEQWISE_PC</th>
+        <th>MARGIN_GROUP_SEQWISE_PC</th>
+        <th>SUMMERY_SEQWISE_PC</th>
+        <th>WINNER_DATEWISE_AC</th>
+        <th>WINNER_REGIONWISE_AC</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if table_data %}
+        {% for row in table_data %}
+          <tr>
+            {% for cell in row %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="68">No script output yet.</td> 
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</body>
+</html>
